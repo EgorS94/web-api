@@ -6,6 +6,19 @@ const contacts = [
   { id: 3, name: `Full name 3`, email: `ex3@mail.ru`, phone: `011-245-7039`, address: `東京都足立区東和２丁目１番４号ドーミー亀有303` }
 ];
 
+const addContact = () => {
+  const item = {
+    id: Math.floor(Math.random() * 100),
+    name: `Full name 3`,
+    email: `ex3@mail.ru`,
+    phone: `011-245-7039`,
+    address: `東京都足立区東和２丁目１番４号ドーミー亀有303`
+  }
+  contacts.push(item);
+  console.log(contacts);
+  
+}
+
 const App = () => {
   return (
     <div className="container mt-5">
@@ -15,6 +28,14 @@ const App = () => {
         </div>
         <div className="card-body">
           <TableContact contacts={contacts} />
+          <div>
+            <button
+              className="btn btn-primary"
+              onClick={() => { addContact() }}
+            >
+              Add contact
+            </button>
+          </div>
         </div>
       </div>
     </div>
