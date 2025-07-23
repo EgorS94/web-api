@@ -1,3 +1,4 @@
+import FormContact from "./layout/FormContact/FormContact";
 import TableContact from "./layout/TableContact/TableContact";
 import React, { useState } from "react";
 
@@ -11,17 +12,17 @@ const App = () => {
     ]
   );
 
-  const addContact = () => {
+  const addContact = (contactName, contactEmail, contactPhone, contactAddress) => {
 
     const newId = Math.max(
       ...contacts.map(e => e.id)) + 1;
 
     const item = {
       id: newId,
-      name: `Full name ${Math.floor(Math.random() * 15)}`,
-      email: `ex${Math.floor(Math.random() * 130)}@mail.ru`,
-      phone: `011-${Math.floor(Math.random() * 1000)}-7039`,
-      address: `東京都足立区東和２丁目１番４号ドーミー亀有${Math.floor(Math.random() * 10 + 200)}`
+      name: contactName,
+      email: contactEmail,
+      phone: contactPhone,
+      address: contactAddress
     }
     setContacts([...contacts, item]);
   }
@@ -34,14 +35,7 @@ const App = () => {
         </div>
         <div className="card-body">
           <TableContact contacts={contacts} />
-          <div>
-            <button
-              className="btn btn-primary"
-              onClick={() => { addContact() }}
-            >
-              Add contact
-            </button>
-          </div>
+          <FormContact addContact = {addContact}/>
         </div>
       </div>
     </div>
