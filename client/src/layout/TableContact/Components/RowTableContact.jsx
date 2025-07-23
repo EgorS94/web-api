@@ -1,13 +1,13 @@
 import React from "react";
 
-const RowTableContact = () => {
+const RowTableContact = (props) => {
     return (
         <tr>
-            <td>1</td>
-            <td>Name</td>
-            <td>e-mail</td>
-            <td>phone number</td>
-            <td>address</td>
+            <td>{props.id}</td>
+            <td>{props.name}</td>
+            <td>{props.email}</td>
+            <td>{props.phone}</td>
+            <td>{props.address}</td>
         </tr>
     )
 }
