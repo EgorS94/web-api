@@ -26,8 +26,9 @@ const TableContact = (props) => {
             <tbody>
                 {
                     props.contacts.map(
-                        contact =>
+                        (contact, index) =>
                         (<RowTableContact
+                            key={index}
                             id={contact.id}
                             name={contact.name}
                             email={contact.email}
