@@ -3,9 +3,11 @@ import TableContact from "./layout/TableContact/TableContact";
 import React, { useState } from "react";
 import axious from "axios";
 
+const baseApiUrl = process.env.REACT_APP_API_URL;
+
 const App = () => {
 
-  const url = "http://localhost:5136/api/ContactManagement/contacts";
+  const url = `${baseApiUrl}/contacts`;
   axious.get(url).then(
     res => console.log(res.data)
   );
