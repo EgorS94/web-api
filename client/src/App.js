@@ -1,8 +1,14 @@
 import FormContact from "./layout/FormContact/FormContact";
 import TableContact from "./layout/TableContact/TableContact";
 import React, { useState } from "react";
+import axious from "axios";
 
 const App = () => {
+
+  const url = "http://localhost:5136/api/ContactManagement/contacts";
+  axious.get(url).then(
+    res => console.log(res.data)
+  );
 
   const [contacts, setContacts] = useState(
     [
@@ -30,7 +36,6 @@ const App = () => {
   const deleteContacts = (id) => {
     setContacts(contacts.filter(item => item.id !== id));
   }
-
   return (
     <div className="container mt-5">
       <div className="card">
