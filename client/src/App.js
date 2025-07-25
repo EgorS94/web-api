@@ -1,7 +1,7 @@
 import FormContact from "./layout/FormContact/FormContact";
 import TableContact from "./layout/TableContact/TableContact";
 import React, { useState, useEffect } from "react";
-import axious from "axios";
+import axios from "axios";
 
 const baseApiUrl = process.env.REACT_APP_API_URL;
 
@@ -18,7 +18,7 @@ const App = () => {
   const url = `${baseApiUrl}/contacts`;
 
   useEffect(() => {
-    axious.get(url).then(
+    axios.get(url).then(
       res => setContacts(res.data)
     );
   }, [])
@@ -28,7 +28,7 @@ const App = () => {
     const newId = contacts.length === 0 ? 1 : Math.max(
       ...contacts.map(e => e.id)) + 1;
     
-    
+    const url = `${baseApiUrl}/contacts`;
     const item = {
       id: newId,
       name: contactName,
@@ -36,6 +36,7 @@ const App = () => {
       phone: contactPhone,
       address: contactAddress
     }
+    axios.post(url, item);
     setContacts([...contacts, item]);
   }
 
