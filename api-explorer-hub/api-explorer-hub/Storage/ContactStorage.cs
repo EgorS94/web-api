@@ -8,7 +8,7 @@ namespace api_explorer_hub.Storage
     public class ContactStorage
     {
         private List<Contact> Contacts { get; set; }
-        
+
         public ContactStorage()
         {
             this.Contacts = new List<Contact>();
@@ -17,10 +17,10 @@ namespace api_explorer_hub.Storage
             {
                 this.Contacts.Add(new Contact
                 {
-                    Id = Guid.NewGuid(),
+                    Id = i + 1,
                     Name = faker.Name.FullName(),
                     Email = faker.Internet.Email(),
-                    Phone = faker.Phone.PhoneNumber(),
+                    Phone = faker.Phone.PhoneNumber("###-####-####"),
                     Address = faker.Address.StreetAddress()
                 });
             }
@@ -36,7 +36,7 @@ namespace api_explorer_hub.Storage
         {
             foreach (var item in Contacts)
             {
-                if (item.Id.Equals(contact.Id))
+                if (item.Id == contact.Id)
                 {
                     return false;
                 }
@@ -45,7 +45,7 @@ namespace api_explorer_hub.Storage
             return true;
         }
 
-        public bool Remove(Guid id)
+        public bool Remove(int id)
         {
             Contact contact;
             for (int i = 0; i < this.Contacts.Count; i++)
@@ -60,12 +60,12 @@ namespace api_explorer_hub.Storage
             return false;
         }
 
-        public bool Update(ContactDto contactDto, Guid id)
+        public bool Update(ContactDto contactDto, int id)
         {
             Contact contact;
             for (int i = 0; i < this.Contacts.Count; i++)
             {
-                if (this.Contacts[i].Id.Equals(id))
+                if (this.Contacts[i].Id == id)
                 {
                     contact = this.Contacts[i];
                     contact.Name = contactDto.Name;
@@ -78,30 +78,27 @@ namespace api_explorer_hub.Storage
             return false;
         }
 
-        public Contact FindContactById(Guid id)
+        public Contact FindContactById(int id)
         {
-            
             foreach (var item in Contacts)
             {
-                if (item.Id.Equals(id))
-                {
-                    return item;
-                }
+                if (item.Id == id) return item;
             }
-            return NullContact();
+            return null;
         }
 
-        public Contact NullContact()
-        {
-            Contact nullContact  = new Contact{
-                Id = Guid.Empty,
-                Name = "",
-                Email = "",
-                Phone = "",
-                Address = ""
-            };
+        // public Contact NullContact()
+        // {
+        //     Contact nullContact = new Contact
+        //     {
+        //         Id = 0,
+        //         Name = "",
+        //         Email = "",
+        //         Phone = "",
+        //         Address = ""
+        //     };
 
-            return nullContact;
-        }
+        //     return nullContact;
+        // }
     }
 }

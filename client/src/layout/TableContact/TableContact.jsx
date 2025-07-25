@@ -19,7 +19,7 @@ const TableContact = (props) => {
                         Номер телефона
                     </th>
                     <th>
-                        Адресс
+                        Адрес
                     </th>
                 </tr>
             </thead>

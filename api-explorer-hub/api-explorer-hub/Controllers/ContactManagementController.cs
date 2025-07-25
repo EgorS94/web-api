@@ -8,14 +8,14 @@ namespace api_explorer_hub.Controllers
     public class ContactManagementController : BaseController
     {
         private readonly ContactStorage contactStorage;
-        
+
         public ContactManagementController(ContactStorage contactStorage)
         {
             this.contactStorage = contactStorage;
         }
 
         [HttpPost("contacts")]
-        public IActionResult Create([FromBody]Contact contact)
+        public IActionResult Create([FromBody] Contact contact)
         {
             bool res = contactStorage.Add(contact);
             if (res)
@@ -32,7 +32,7 @@ namespace api_explorer_hub.Controllers
         }
 
         [HttpDelete("contacts/{id}")]
-        public IActionResult DeleteContacts(Guid id)
+        public IActionResult DeleteContacts(int id)
         {
             bool res = contactStorage.Remove(id);
             if (res) return NoContent();
@@ -40,7 +40,7 @@ namespace api_explorer_hub.Controllers
         }
 
         [HttpPut("contacts/{id}")]
-        public IActionResult UpdateContacts([FromBody] ContactDto contactDto, Guid id)
+        public IActionResult UpdateContacts([FromBody] ContactDto contactDto, int id)
         {
             bool res = contactStorage.Update(contactDto, id);
             if (res) return Ok();
@@ -48,11 +48,16 @@ namespace api_explorer_hub.Controllers
         }
 
         [HttpGet("contacts/{id}")]
-        public IActionResult FindContactById(Guid id)
+        public IActionResult FindContactById(int id)
         {
-            
+
+            if (id < 0)
+            {
+                return BadRequest("Invalid format of id");
+            }
+
             Contact foundedContact = contactStorage.FindContactById(id);
-            if (foundedContact.Id.Equals(Guid.Empty)) return NotFound($"Contact with id: {id} does not exist.");
+            if (foundedContact == null) return NotFound($"Contact with id: {id} does not exist.");
 
             return Ok($"Contact has been founded - " +
                 $"id: {foundedContact.Id}, " +
