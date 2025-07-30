@@ -5,11 +5,11 @@ using Bogus.DataSets;
 
 namespace api_explorer_hub.Storage
 {
-    public class ContactStorage
+    public class InMemoryStorage : IStorage
     {
         private List<Contact> Contacts { get; set; }
 
-        public ContactStorage()
+        public InMemoryStorage()
         {
             this.Contacts = new List<Contact>();
             var faker = new Faker("ja");
@@ -86,19 +86,5 @@ namespace api_explorer_hub.Storage
             }
             return null;
         }
-
-        // public Contact NullContact()
-        // {
-        //     Contact nullContact = new Contact
-        //     {
-        //         Id = 0,
-        //         Name = "",
-        //         Email = "",
-        //         Phone = "",
-        //         Address = ""
-        //     };
-
-        //     return nullContact;
-        // }
     }
 }

@@ -7,9 +7,9 @@ namespace api_explorer_hub.Controllers
 {
     public class ContactManagementController : BaseController
     {
-        private readonly ContactStorage contactStorage;
+        private readonly IStorage contactStorage;
 
-        public ContactManagementController(ContactStorage contactStorage)
+        public ContactManagementController(IStorage contactStorage)
         {
             this.contactStorage = contactStorage;
         }
