@@ -13,7 +13,7 @@ namespace api_explorer_hub.Storage
 
         bool Update(ContactDto contactDto, int id);
 
-        Contact FindContactById(int id);
+        //Contact FindContactById(int id);
 
     }
 }

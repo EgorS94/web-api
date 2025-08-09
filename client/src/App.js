@@ -38,6 +38,7 @@ const App = () => {
     }
     axios.post(url, item);
     setContacts([...contacts, item]);
+    
   }
 
   const deleteContacts = (id) => {

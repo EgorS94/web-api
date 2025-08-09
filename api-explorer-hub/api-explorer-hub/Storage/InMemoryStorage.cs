@@ -78,13 +78,13 @@ namespace api_explorer_hub.Storage
             return false;
         }
 
-        public Contact FindContactById(int id)
-        {
-            foreach (var item in Contacts)
-            {
-                if (item.Id == id) return item;
-            }
-            return null;
-        }
+        //public Contact FindContactById(int id)
+        //{
+        //    foreach (var item in Contacts)
+        //    {
+        //        if (item.Id == id) return item;
+        //    }
+        //    return null;
+        //}
     }
 }
