@@ -7,7 +7,7 @@ namespace api_explorer_hub.Storage
     {
         List<Contact> GetContacts();
 
-        bool Add(Contact contact);
+        Contact Add(Contact contact);
 
         bool Remove(int id);
 

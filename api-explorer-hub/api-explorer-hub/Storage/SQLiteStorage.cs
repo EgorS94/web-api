@@ -14,7 +14,7 @@ namespace api_explorer_hub.Storage
             this.connectionString = connectionString;
         }
 
-        public bool Add(Contact contact)
+        public Contact Add(Contact contact)
         {
             using var connection = new SqliteConnection(connectionString);
 
@@ -22,19 +22,23 @@ namespace api_explorer_hub.Storage
 
             var command = connection.CreateCommand();
 
-            string sql = "INSERT INTO contacts (id, name, email, phone_number, address) VALUES (@id, @name, @email, @phone, @address);";
+            string sql = @"INSERT INTO contacts (name, email, phone_number, address) VALUES (@name, @email, @phone, @address);
+                            SELECT last_insert_rowid();
+            ";
             //string sql = new StringBuilder()
             //    .Append("INSERT INTO contacts (name, email, phone_number, address) VALUES")
             //    .Append($"('{contact.Name}', '{contact.Email}', '{contact.Phone}', '{contact.Address}');").ToString();
             command.CommandText = sql;
 
-            command.Parameters.AddWithValue("@id", contact.Id);
+            //command.Parameters.AddWithValue("@id", contact.Id);
             command.Parameters.AddWithValue("@name", contact.Name);
             command.Parameters.AddWithValue("@email", contact.Email);
             command.Parameters.AddWithValue("@phone", contact.Phone);
             command.Parameters.AddWithValue("@address", contact.Address);
 
-            return command.ExecuteNonQuery() > 0;
+            contact.Id = Convert.ToInt32(command.ExecuteScalar());
+
+            return contact;
         }
 
         //public Contact FindContactById(int id)

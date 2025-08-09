@@ -24,21 +24,17 @@ const App = () => {
   }, [])
 
   const addContact = (contactName, contactEmail, contactPhone, contactAddress) => {
-
-    const newId = contacts.length === 0 ? 1 : Math.max(
-      ...contacts.map(e => e.id)) + 1;
     
     const url = `${baseApiUrl}/contacts`;
     const item = {
-      id: newId,
       name: contactName,
       email: contactEmail,
       phone: contactPhone,
       address: contactAddress
     }
-    axios.post(url, item);
-    setContacts([...contacts, item]);
-    
+    axios.post(url, item).then(
+      response => setContacts([...contacts, response.data])
+    );
   }
 
   const deleteContacts = (id) => {

@@ -17,8 +17,8 @@ namespace api_explorer_hub.Controllers
         [HttpPost("contacts")]
         public IActionResult Create([FromBody] Contact contact)
         {
-            bool res = contactStorage.Add(contact);
-            if (res)
+            Contact res = contactStorage.Add(contact);
+            if (res != null)
             {
                 return Created(contact.Id.ToString(), contact);
             }

@@ -32,17 +32,17 @@ namespace api_explorer_hub.Storage
             return this.Contacts;
         }
 
-        public bool Add(Contact contact)
+        public Contact Add(Contact contact)
         {
             foreach (var item in Contacts)
             {
                 if (item.Id == contact.Id)
                 {
-                    return false;
+                    return null;
                 }
             }
             this.Contacts.Add(contact);
-            return true;
+            return contact;
         }
 
         public bool Remove(int id)
