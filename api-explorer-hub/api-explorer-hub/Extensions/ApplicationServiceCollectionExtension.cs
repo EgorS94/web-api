@@ -1,4 +1,7 @@
-﻿using api_explorer_hub.Storage;
+﻿using api_explorer_hub.DataContext;
+using api_explorer_hub.Seed;
+using api_explorer_hub.Storage;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 namespace api_explorer_hub.Extensions
@@ -18,8 +21,12 @@ namespace api_explorer_hub.Extensions
                 });
             });
             services.AddControllers();
+
             var stringConnection = configuration.GetConnectionString("SqliteStringConnection");
-            services.AddSingleton<IStorage>(new SQLiteStorage(stringConnection));
+            services.AddDbContext<SqliteDbContext>(opt => opt.UseSqlite(stringConnection));
+            services.AddScoped<IPaginationStorage, SQLitePaginationEfStorage>();
+            services.AddScoped<IInitializer, SqliteEfFakerInitializer>();
+            //services.AddSingleton<IStorage>(new SQLiteStorage(stringConnection));
 
             services.AddCors(opt =>
                 opt.AddPolicy("CorsPolicy", policy =>

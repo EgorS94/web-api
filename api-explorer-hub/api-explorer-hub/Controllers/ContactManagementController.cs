@@ -7,9 +7,9 @@ namespace api_explorer_hub.Controllers
 {
     public class ContactManagementController : BaseController
     {
-        private readonly IStorage contactStorage;
+        private readonly IPaginationStorage contactStorage;
 
-        public ContactManagementController(IStorage contactStorage)
+        public ContactManagementController(IPaginationStorage contactStorage)
         {
             this.contactStorage = contactStorage;
         }
@@ -47,23 +47,20 @@ namespace api_explorer_hub.Controllers
             return Conflict("Contact with this id is not found.");
         }
 
-        //[HttpGet("contacts/{id}")]
-        //public IActionResult FindContactById(int id)
-        //{
+        [HttpGet("contacts/{id}")]
+        public IActionResult FindContactById(int id)
+        {
 
-        //    if (id < 0)
-        //    {
-        //        return BadRequest("Invalid format of id");
-        //    }
+            if (id < 0)
+            {
+                return BadRequest("Invalid format of id");
+            }
 
-        //    Contact foundedContact = contactStorage.FindContactById(id);
-        //    if (foundedContact == null) return NotFound($"Contact with id: {id} does not exist.");
+            var contact = contactStorage.FindContactById(id);
+            
+            if (contact == null) return NotFound($"Contact with id: {id} does not exist.");
 
-        //    return Ok($"Contact has been founded - " +
-        //        $"id: {foundedContact.Id}, " +
-        //        $"Name: {foundedContact.Name}, " +
-        //        $"Email: {foundedContact.Email}, " +
-        //        $"Address: {foundedContact.Address}.");
-        //}
+            return Ok(contact);
+        }
     }
 }
