@@ -21,6 +21,9 @@ const TableContact = (props) => {
                     <th>
                         Адрес
                     </th>
+                    <th>
+                        
+                    </th>
                 </tr>
             </thead>
             <tbody>

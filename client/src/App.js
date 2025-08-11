@@ -10,11 +10,16 @@ const baseApiUrl = process.env.REACT_APP_API_URL;
 
 const App = () => {
 
+  const [updateTrigger, setUpdateTrigger] = useState(0);
   const [contacts, setContacts] = useState([]);
   const location = useLocation();
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [pageSize] = useState(10);
+
+  const handlUpdateTrigger = () => {
+    setUpdateTrigger(updateTrigger + 1);
+  }
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -56,7 +61,7 @@ const App = () => {
             </div>
           </div>
         } />
-        <Route path="contacts/:id" element={<ContactDetails />} />
+        <Route path="contacts/:id" element={<ContactDetails onUpdate = { handlUpdateTrigger } />} />
         <Route path="append" element={<AppendContact />} />
       </Routes>
     </div>
