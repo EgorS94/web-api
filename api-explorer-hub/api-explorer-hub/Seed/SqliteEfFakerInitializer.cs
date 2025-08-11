@@ -57,7 +57,7 @@ namespace api_explorer_hub.Seed
                     .RuleFor(c => c.Phone, f => f.Phone.PhoneNumber())
                     .RuleFor(c => c.Address, f => f.Address.FullAddress());
 
-                var contacts = faker.Generate(20);
+                var contacts = faker.Generate(2000);
 
                 context.Contacts.AddRange(contacts);
                 context.SaveChanges();
