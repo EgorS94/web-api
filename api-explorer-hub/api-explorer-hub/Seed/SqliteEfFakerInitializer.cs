@@ -52,8 +52,8 @@ namespace api_explorer_hub.Seed
             if (!context.Contacts.Any())
             {
                 var faker = new Faker<Contact>("ru")
-                    .RuleFor(c=>c.Name, f=>f.Name.FullName())
-                    .RuleFor(c => c.Email, (f,c) => GenerateEmailForPerson(c.Name))
+                    .RuleFor(c => c.Name, f => f.Name.FullName())
+                    .RuleFor(c => c.Email, (f, c) => GenerateEmailForPerson(c.Name))
                     .RuleFor(c => c.Phone, f => f.Phone.PhoneNumber())
                     .RuleFor(c => c.Address, f => f.Address.FullAddress());
 

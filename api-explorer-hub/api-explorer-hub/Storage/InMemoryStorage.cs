@@ -12,7 +12,7 @@ namespace api_explorer_hub.Storage
         public InMemoryStorage()
         {
             this.Contacts = new List<Contact>();
-            var faker = new Faker("ja");
+            var faker = new Faker("ru");
             for (int i = 0; i <= 10; i++)
             {
                 this.Contacts.Add(new Contact

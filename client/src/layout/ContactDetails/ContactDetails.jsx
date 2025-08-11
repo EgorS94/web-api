@@ -19,6 +19,26 @@ const ContactDetails = () => {
         )
     }, [id, navigate]);
 
+    const handleRemove = () => {
+        const url = `${baseApiUrl}/contacts/${id}`;
+        if (window.confirm("Вы действительно хотите удалить контакт?")) {
+            axios.delete(url).then(
+                navigate("/")
+            ).catch(
+                console.log("Ошибка удаления")
+            );
+        }
+    }
+
+    const handleUpdate = () => {
+        const url = `${baseApiUrl}/contacts/${id}`;
+        axios.put(url, contact).then(
+            navigate("/")
+        ).catch(
+            console.log("Ошибка обновления")
+        );
+    }
+
     return (
         <div className="container mt-5">
             <h2>Детали контакта</h2>
@@ -26,31 +46,31 @@ const ContactDetails = () => {
                 <label className="form-label">Имя: </label>
                 <input className="form-control" type="text"
                     value={contact.name}
-                    onChange={(e) => { }}
+                    onChange={(e) => { setContact({ ...contact, name: e.target.value }) }}
                 />
                 <label className="form-label">Email: </label>
                 <input className="form-control" type="text"
                     value={contact.email}
-                    onChange={(e) => { }}
+                    onChange={(e) => { setContact({ ...contact, email: e.target.value }) }}
                 />
                 <label className="form-label">Номер телефона: </label>
                 <input className="form-control" type="text"
                     value={contact.phone}
-                    onChange={(e) => { }}
+                    onChange={(e) => { setContact({ ...contact, phone: e.target.value }) }}
                 />
                 <label className="form-label">Адрес: </label>
                 <input className="form-control" type="text"
                     value={contact.address}
-                    onChange={(e) => { }}
+                    onChange={(e) => { setContact({ ...contact, address: e.target.value }) }}
                 />
             </div>
-            <button className="btn btn-primary me-2" onClick={(e) => { }}>
+            <button className="btn btn-primary me-2" onClick={(e) => { handleUpdate() }}>
                 Обновить
             </button>
-            <button className="btn btn-danger" onClick={(e) => { }}>
+            <button className="btn btn-danger" onClick={(e) => { handleRemove() }}>
                 Удалить
             </button>
-            <button className="btn btn-secondary ms-2" onClick={(e) => { }}>
+            <button className="btn btn-secondary ms-2" onClick={(e) => { navigate("/") }}>
                 Назад
             </button>
         </div>)
