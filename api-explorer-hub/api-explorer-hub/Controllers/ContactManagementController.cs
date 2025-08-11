@@ -62,5 +62,21 @@ namespace api_explorer_hub.Controllers
 
             return Ok(contact);
         }
+
+        [HttpGet("contacts/page")]
+        public IActionResult GetContacts(int pageNumber = 1, int pageSize = 5)
+        {
+            var (contacts, total) = contactStorage.GetContacts(pageNumber, pageSize);
+
+            var response = new
+            {
+                Contacts = contacts,
+                TotalCount = total,
+                CurrentPage = pageNumber,
+                PageSize = pageSize
+            };
+
+            return Ok(response);
+        }
     }
 }

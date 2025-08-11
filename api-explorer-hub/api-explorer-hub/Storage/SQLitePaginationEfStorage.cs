@@ -15,5 +15,16 @@ namespace api_explorer_hub.Storage
         {
             return base.context.Contacts.Find(id);
         }
+
+        public (List<Contact>, int TotalCount) GetContacts(int pageNumber, int pageSize)
+        {
+            int total = base.context.Contacts.Count();
+            List<Contact> contacts = base.context.Contacts
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return (contacts,  total);
+        }
     }
 }
