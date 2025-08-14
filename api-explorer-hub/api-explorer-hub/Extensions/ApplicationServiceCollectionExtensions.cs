@@ -6,7 +6,7 @@ using Microsoft.OpenApi.Models;
 
 namespace api_explorer_hub.Extensions
 {
-    public static class ApplicationServiceCollectionExtension
+    public static class ApplicationServiceCollectionExtensions
     {
         public static IServiceCollection AddServiceCollection(
             this IServiceCollection services,

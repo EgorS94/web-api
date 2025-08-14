@@ -4,7 +4,7 @@ using Bogus;
 
 namespace api_explorer_hub.Extensions
 {
-    public static class ApplicationServiceProviderExtension
+    public static class ApplicationServiceProviderExtensions
     {
         public static IServiceProvider AddCustomService(
             this IServiceProvider services,
