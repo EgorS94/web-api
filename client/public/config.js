@@ -1,3 +1,3 @@
 window.config = {
-    apiUrl:"/api/ContactManagement"
+    apiUrl: "/api/ContactManagement"
 };

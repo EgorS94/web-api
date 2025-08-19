@@ -56,12 +56,12 @@ const App = () => {
               />
               <Link to="/append"
                 className="btn btn-success mt-3">
-                  Добавить контакт
+                Добавить контакт
               </Link>
             </div>
           </div>
         } />
-        <Route path="contacts/:id" element={<ContactDetails onUpdate = { handlUpdateTrigger } />} />
+        <Route path="contacts/:id" element={<ContactDetails onUpdate={handlUpdateTrigger} />} />
         <Route path="append" element={<AppendContact />} />
       </Routes>
     </div>

@@ -5,6 +5,7 @@ namespace api_explorer_hub.Controllers
     [Route("[controller]")]
     public class FallbackController : Controller
     {
+        [HttpGet("/")]
         public IActionResult Index()
         {
             return PhysicalFile(

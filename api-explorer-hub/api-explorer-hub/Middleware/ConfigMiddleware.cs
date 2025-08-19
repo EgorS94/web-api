@@ -19,9 +19,7 @@
 
                 var apiUrl = $"{scheme}://{host}{pathBase}/api/ContactManagement";
 
-                var config = $@"window.config = {{
-                    apiUrl: '{apiUrl}'
-                }};";
+                var config = $"window.config = {{apiUrl: `{apiUrl}`}};";
 
                 context.Response.ContentType = "application/javascript";
                 await context.Response.WriteAsync(config);
