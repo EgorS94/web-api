@@ -9,6 +9,6 @@ ContactApp
 в фоновом режиме на основе Docker-образа "full-contact", связывает порт 8001 хоста с портом
 5000 контейнера и присваивает контейнеру имя "app-contact-1".
 
-- `docker tag full-contact EgorS94/full-contact:latest` создает новый тег для существующего Docker-образа
+- `docker tag full-contact egor94/full-contact:latest` создает новый тег для существующего Docker-образа
 
-- `docker push EgorS94/full-contact:latest` отправляет локальный Docker-образ в удаленный репозиторий
+- `docker push egor94/full-contact:latest` отправляет локальный Docker-образ в удаленный репозиторий
